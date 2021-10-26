@@ -1,18 +1,23 @@
+// Game States
+// "WIN" - Player robot has defeated all enemy-robots
+//      ** Fight all enemy-robots
+//      ** Defeat each enemy-robot
+// "LOSE" - Player robot's health is zero or less
+
 
 var playerName = window.prompt("What is your robot's name?");
 var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
-// You can also log multiple values at once like this
-console.log(playerName, playerAttack, playerHealth, playerMoney);
 
-var enemyName = "J-Hoon";
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
 
-var fight = function() {
+var fight = function(enemyName) {
+    
     //Alert players that they are starting the round
     window.alert("Welcome to Robot Gladiators!");
 
@@ -20,6 +25,7 @@ var fight = function() {
 
     // if player choses to fight, then fight
     if (promptFight === "fight" || promptFight === "FIGHT") {
+
         // remove enemy's health byt subtracting the amount ser in the playerAttack variable
         enemyHealth = enemyHealth - playerAttack;
         console.log(
@@ -48,6 +54,7 @@ var fight = function() {
 
         // if player choses to skip
         } else if (promptFight === "skip" || promptFight === "SKIP") { 
+
             // confirm player wants to skip
          var confirmSkip = window.confirm("Are you sure you'd like to quit?");
 
@@ -57,8 +64,9 @@ var fight = function() {
             
              // subtract money from playerMoney for skipping
              playerMoney = playerMoney - 2;
+
              console.log(
-                playerName + " has lost 2 credits!  " + playerName + " has " + playerMoney + " remaining.  " 
+                playerName + " has lost 2 credits!  " + playerName + " has " + playerMoney + " credits remaining." 
              );
          }
          // if no (false), ask question again by running fight () again
@@ -69,4 +77,6 @@ var fight = function() {
     
 };
 
-fight();
+for(var i = 0; i < enemyNames.length; i++) {
+    fight(enemyNames[i]);
+}
